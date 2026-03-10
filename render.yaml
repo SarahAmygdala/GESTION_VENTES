@@ -8,6 +8,8 @@ services:
         value: production
       - key: APP_DEBUG
         value: false
+      - key: APP_NAME
+        value: "Mi Varotra"
       - key: LOG_CHANNEL
         value: stderr
       - key: DB_CONNECTION
