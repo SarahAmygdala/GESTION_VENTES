@@ -9,6 +9,16 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('/init-db', function () {
+    try {
+        Artisan::call('migrate', ['--force' => true]);
+        return "Base de données initialisée avec succès !";
+    } catch (\Exception $e) {
+        return "Erreur lors de l'initialisation : " . $e->getMessage();
+    }
+});
 
 Route::get('/', function () {
     return redirect()->route('login');
