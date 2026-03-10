@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply font-sans antialiased bg-[#F8FAFC] text-[#111827];
+        font-family: 'Inter', sans-serif;
+    }
+}
+
+@layer components {
+
+    /* --- Modern Palette & Typography --- */
+    .text-title {
+        @apply text-[22px] font-bold text-[#111827] leading-tight;
+    }
+
+    .text-subtitle {
+        @apply text-[16px] font-semibold text-[#111827];
+    }
+
+    .text-base-pos {
+        @apply text-[14px] text-[#111827];
+    }
+
+    .text-small {
+        @apply text-[12px] text-[#6B7280];
+    }
+
+    /* --- Sidebar Styles (240px) --- */
+    .sidebar-modern {
+        @apply bg-white border-r border-[#E5E7EB] w-[240px] flex flex-col h-full shadow-sm;
+    }
+
+    .sidebar-link {
+        @apply flex items-center px-4 py-3 text-[14px] font-medium text-[#6B7280] rounded-xl transition-all duration-200 hover:bg-[#F3F4F6] hover:text-[#111827] group;
+    }
+
+    .sidebar-link-active {
+        @apply bg-[#2563EB] text-white shadow-md shadow-blue-200 hover:bg-[#3B82F6] hover:text-white;
+    }
+
+    /* --- Cards & UI Elements (Shopify/Square Style) --- */
+    .premium-card {
+        @apply bg-white border border-[#E5E7EB] rounded-[14px] shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#2563EB]/30 translate-y-0 hover:-translate-y-1;
+    }
+
+    .btn-pos {
+        @apply px-4 py-2 rounded-[12px] font-bold text-[14px] transition-all flex items-center justify-center active:scale-95 disabled:opacity-50;
+    }
+
+    .btn-primary-pos {
+        @apply bg-[#2563EB] text-white hover:bg-[#3B82F6] shadow-sm;
+    }
+
+    .btn-success-pos {
+        @apply bg-[#22C55E] text-white hover:bg-[#16A34A] h-[50px] shadow-sm;
+    }
+
+    .btn-danger-pos {
+        @apply bg-[#EF4444] text-white hover:bg-[#DC2626];
+    }
+
+    /* --- POS Specifics --- */
+    .pos-section-payment {
+        @apply bg-[#EFF6FF] rounded-[14px] p-6 border border-[#DBEAFE];
+    }
+
+    .pos-total-display {
+        @apply text-[28px] font-black text-[#2563EB] text-center tracking-tight;
+    }
+
+    .pos-input {
+        @apply h-[44px] w-full px-4 border border-[#E5E7EB] rounded-[10px] text-[14px] focus:ring-2 focus:ring-[#2563EB]/20 focus:border-[#2563EB] outline-none transition-all;
+    }
+
+    /* --- Scrollbars --- */
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        @apply bg-transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        @apply bg-[#E5E7EB] rounded-full hover:bg-[#D1D5DB];
+    }
+}
