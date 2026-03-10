@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: mi-varotra
+    runtime: php
+    plan: free
+    buildCommand: ./build.sh
+    startCommand: php artisan serve --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: DB_CONNECTION
+        value: pgsql
+      - key: NODE_VERSION
+        value: 20
+
+databases:
+  - name: mi-varotra-db
+    plan: free
+    databaseName: mivarotra
+    user: mivarotra
