@@ -9,6 +9,16 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+
+Route::get('/db-seed', function () {
+    try {
+        Artisan::call('migrate:fresh', ['--seed' => true, '--force' => true]);
+        return "Base de données réinitialisée et seedée avec succès !";
+    } catch (\Exception $e) {
+        return "Erreur lors du seeding : " . $e->getMessage();
+    }
+});
 
 Route::get('/', function () {
     return redirect()->route('login');
