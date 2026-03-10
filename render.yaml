@@ -12,6 +12,12 @@ services:
         value: stderr
       - key: DB_CONNECTION
         value: pgsql
+      - key: DB_URL
+        fromDatabase:
+          name: mi-varotra-db
+          property: connectionString
+      - key: APP_KEY
+        sync: false
       - key: NODE_VERSION
         value: 20
 
