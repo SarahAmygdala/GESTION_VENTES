@@ -17,7 +17,7 @@ services:
           name: mi-varotra-db
           property: connectionString
       - key: APP_KEY
-        sync: false
+        value: base64:SU7pkYW5M9s0kEFcEE2TozhF6gw9MR/o4qrDrp63lyE=
       - key: NODE_VERSION
         value: 20
 
