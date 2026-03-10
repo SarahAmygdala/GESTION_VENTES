@@ -47,6 +47,7 @@ COPY docker/nginx.conf /etc/nginx/sites-available/default
 RUN ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 
 # Permissions
+RUN mkdir -p storage/app/public && php artisan storage:link
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
 # Expose port and start nginx and php-fpm
