@@ -148,13 +148,20 @@
                 <div class="divide-y divide-slate-50 max-h-[320px] overflow-y-auto custom-scrollbar">
                     @forelse($low_stock_products as $product)
                         <div class="flex items-center p-4 hover:bg-red-50/30 transition-colors group">
-                            <div class="h-9 w-9 rounded-xl flex items-center justify-center flex-shrink-0 mr-3"
-                                style="background: {{ $product->category->color ?? '#EF4444' }}15;">
-                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                    style="color: {{ $product->category->color ?? '#EF4444' }}">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                                </svg>
+                            <div class="h-10 w-10 rounded-xl flex-shrink-0 mr-3 overflow-hidden border border-slate-100">
+                                @if($product->image)
+                                    <img src="{{ asset('storage/'.$product->image) }}" alt="{{ $product->name }}"
+                                        class="h-full w-full object-cover">
+                                @else
+                                    <div class="h-full w-full flex items-center justify-center"
+                                        style="background: {{ $product->category->color ?? '#EF4444' }}15;">
+                                        <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                            style="color: {{ $product->category->color ?? '#EF4444' }}">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+                                        </svg>
+                                    </div>
+                                @endif
                             </div>
                             <div class="flex-1 min-w-0">
                                 <p class="text-[13px] font-bold text-slate-800 truncate">{{ $product->name }}</p>
