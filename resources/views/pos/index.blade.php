@@ -55,21 +55,41 @@
                                 class="absolute -top-1 -right-1 h-3 w-3 bg-blue-600 rounded-full border-2 border-white"></span>
                         </button>
 
-                        <div class="hidden md:block relative w-64">
-                            <select x-model="selectedCategory"
-                                class="h-[52px] w-full pl-4 pr-10 bg-white border border-slate-200 rounded-2xl text-[14px] font-bold text-slate-700 shadow-sm focus:ring-4 focus:ring-blue-500/10 focus:border-blue-500 transition-all appearance-none cursor-pointer outline-none">
-                                <option value="">Toutes les catégories</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
-                            <span
-                                class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none text-slate-400">
-                                <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                        d="M19 9l-7 7-7-7" />
+                        <div class="hidden md:block relative w-64"
+                            x-data="{ open: false, label: 'Toutes les catégories' }">
+                            <button @click="open = !open" type="button"
+                                class="h-[52px] w-full pl-4 pr-10 bg-white border border-slate-200 rounded-2xl text-[14px] font-bold text-slate-700 shadow-sm hover:border-blue-400 transition-all cursor-pointer outline-none flex items-center justify-between relative">
+                                <span class="truncate" x-text="label"></span>
+                                <svg class="h-4 w-4 text-slate-400 flex-shrink-0 transition-transform duration-200"
+                                    :class="open ? 'rotate-180' : ''"
+                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
                                 </svg>
-                            </span>
+                            </button>
+                            <div x-show="open" @click.outside="open = false" x-cloak
+                                x-transition:enter="transition ease-out duration-150"
+                                x-transition:enter-start="opacity-0 -translate-y-1 scale-95"
+                                x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+                                class="absolute z-50 top-[56px] left-0 w-full bg-white border border-slate-100 rounded-2xl shadow-xl shadow-slate-200/60 overflow-hidden">
+                                <button type="button"
+                                    @click="selectedCategory = ''; label = 'Toutes les catégories'; open = false"
+                                    class="w-full text-left px-4 py-3 text-[14px] font-bold text-blue-600 bg-blue-50/50 hover:bg-blue-50 transition-colors flex items-center space-x-2">
+                                    <svg class="h-4 w-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 6h16M4 12h16M4 18h16"/>
+                                    </svg>
+                                    <span>Toutes les catégories</span>
+                                </button>
+                                <div class="divide-y divide-slate-50">
+                                @foreach ($categories as $category)
+                                    <button type="button"
+                                        @click="selectedCategory = '{{ $category->id }}'; label = '{{ $category->name }}'; open = false"
+                                        class="w-full text-left px-4 py-3 text-[14px] font-medium text-slate-700 hover:bg-slate-50 transition-colors flex items-center space-x-2">
+                                        <span class="h-3 w-3 rounded-full flex-shrink-0" style="background:{{ $category->color }}"></span>
+                                        <span>{{ $category->name }}</span>
+                                    </button>
+                                @endforeach
+                                </div>
+                            </div>
                         </div>
                     </div>
 
